@@ -13,6 +13,7 @@ Various code snippets for writing http services in Go using the `net/http` packa
 
 * Return a 404 or custom status code
 * Setting content (MIME) type
+* Set and retrieve a Cookie
 
 
 #### Templates
@@ -25,15 +26,14 @@ Various code snippets for writing http services in Go using the `net/http` packa
 In Progress
 -----------
 
-#### Cookies
-
-* How to set cookies on a response
-* How to use cookies to maintain sessions data (insecure)
-
-
 #### Multiplexer
 
 * Issues with Go's default route multiplexer 
+
+
+#### Session
+
+* How to use cookies to maintain sessions data (insecure)
 
 
 #### Upload Data
