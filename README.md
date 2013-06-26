@@ -3,17 +3,16 @@ Go HTTP Tutorials
 
 Various code snippets for writing http services in Go using the `net/http` package, including how to:
 
-
-#### Static Files
-
-* Serve static files using `http.FileServer`
-
-
 #### Reponse Headers
 
 * Return a 404 or custom status code
 * Setting content (MIME) type
 * Set and retrieve a Cookie
+
+
+#### Static Files
+
+* Serve static files using `http.FileServer`
 
 
 #### Templates
