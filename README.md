@@ -1,44 +1,42 @@
 Go HTTP Tutorials
 =================
 
-Various code snippets for writing http services in Go using the `net/http` package.
+Various code snippets for writing http services in Go using the `net/http` package, including examples on how to:
 
 
-### Static Files
+#### Static Files
 
-* How to serve static files
-
-
-### Templates
-
-* How to nest templates using Go's `html/template` package
+* Serve static files using `http.FileServer`
 
 
+#### Reponse Headers
+
+* Return a 404 or custom status code
+* Setting content (MIME) type
 
 
+#### Templates
 
+* Nest templates using Go's `html/template` package
+* Change the default variable delimiters.
+* Inject safely escaped CSS and JS into template variables
 
 
 In Progress
 -----------
 
-### Cookies
+#### Cookies
 
 * How to set cookies on a response
 * How to use cookies to maintain sessions data (insecure)
 
 
-### Content-Type
-
-* How to set the content type of a response
-
-
-### Multiplexer
+#### Multiplexer
 
 * Issues with Go's default route multiplexer 
 
 
-### Upload Data
+#### Upload Data
 
 * How to POST form data to a server 
 * How to read POST form data
