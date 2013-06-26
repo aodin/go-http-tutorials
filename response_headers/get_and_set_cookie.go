@@ -1,8 +1,5 @@
 package main
 
-// Sets a cookie with name COOKIE_NAME and value COOKIE_VALUE
-// If the cookie is present on the request, reads it back
-
 import (
 	"fmt"
 	"log"
@@ -14,10 +11,12 @@ const (
 	COOKIE_VALUE = "I-am-an-example-cookie"
 )
 
-func cookieHandler(w http.ResponseWriter, req *http.Request) {
+// Sets a cookie with name COOKIE_NAME and value COOKIE_VALUE.
+// If the cookie is present on the request, reads it back.
 
-	// Check for the cookie and get its value
-	cookie, err := req.Cookie(COOKIE_NAME)
+func HandleCookie(w http.ResponseWriter, r *http.Request) {
+	// Check for the cookie
+	cookie, err := r.Cookie(COOKIE_NAME)
 
 	// Cookies MUST be set before any output is written to the ResponseWriter
 	// MaxAge is in seconds, set to 0 for a session-only cookie
@@ -30,16 +29,10 @@ func cookieHandler(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-
 func main() {
+	http.HandleFunc("/", HandleCookie)
 
-	serverAddress := ":8080"
-
-	http.HandleFunc("/", cookieHandler)
-
-	log.Println("Starting server on address:", serverAddress)
-	err := http.ListenAndServe(serverAddress, nil)
-	if err != nil {
-		log.Panic("Listen and serve failed")
-	}
+	address := ":8081"
+	log.Println("Starting cookie server on address:", address)
+	http.ListenAndServe(address, nil)
 }

@@ -1,7 +1,7 @@
 Go HTTP Tutorials
 =================
 
-Various code snippets for writing http services in Go using the `net/http` package, including examples on how to:
+Various code snippets for writing http services in Go using the `net/http` package, including how to:
 
 
 #### Static Files
