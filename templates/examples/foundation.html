@@ -1,0 +1,16 @@
+{{ define "foundation" }}<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ .Title }}</title>
+    {{ template "header" . }}
+  </head>
+  <body>
+    <div id="content">
+      <p>I am a paragraph from foundation.html</p>
+      {{ template "content" . }}
+    </div>
+    {{ template "script" . }}
+  </body>
+</html>{{ end }}
