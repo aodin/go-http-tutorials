@@ -3,6 +3,11 @@ Go HTTP Tutorials
 
 Various code snippets for writing http services in Go using the `net/http` package, including how to:
 
+#### Request Data
+
+* Upload and read POST form data
+
+
 #### Reponse Headers
 
 * Return a 404 or custom status code
@@ -37,8 +42,6 @@ In Progress
 
 #### Upload Data
 
-* How to POST form data to a server 
-* How to read POST form data
 * How to upload a file to a server
 * How to read an uploaded file
 * How to save an uploaded image
