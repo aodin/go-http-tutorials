@@ -29,8 +29,9 @@ Various code snippets for writing http services in Go using the `net/http` packa
 #### Templates
 
 * Nest templates using Go's `html/template` package
-* Change the default variable delimiters.
+* Change the default variable delimiters
 * Inject safely escaped CSS and JS into template variables
+* Write the correct template syntax for iterators
 
 
 In Progress
