@@ -37,9 +37,15 @@ Various code snippets for writing http services in Go using the `net/http` packa
 In Progress
 -----------
 
+#### Config
+
+* Use flags to accept a custom server address
+
+
 #### Multiplexer
 
-* Issues with Go's default route multiplexer 
+* Issues with Go's default route multiplexer
+* Write your own route multiplexer
 
 
 #### Session
