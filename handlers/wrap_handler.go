@@ -5,14 +5,14 @@ import (
 	"net/http"
 )
 
-func WrapHandler(handler func(http.ResponseWriter, *http.Request)) func(http.ResponseWriter, *http.Request) {
-	return func(w http.ResponseWriter, req *http.Request) {
+func WrapHandler(f http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("I am written by the wrap handler.\n"))
-		handler(w, req)
+		f(w, r)
 	}
 }
 
-func BasicHandler(w http.ResponseWriter, req *http.Request) {
+func BasicHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("I am written by the basic handler.\n"))
 }
 
