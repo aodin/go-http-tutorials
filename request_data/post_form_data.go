@@ -9,9 +9,12 @@ import (
 )
 
 func HandleFormData(w http.ResponseWriter, r *http.Request) {
-	username := r.FormValue("username")
-	password := r.FormValue("password")
-	w.Write([]byte(fmt.Sprintf("Username: %s\nPassword: %s\n", username, password)))
+	output := fmt.Sprintf(
+		"\nUsername: %s\nPassword: %s\n",
+		r.FormValue("username"),
+		r.FormValue("password"),
+	)
+	w.Write([]byte(output))
 }
 
 func main() {
@@ -34,17 +37,16 @@ func main() {
 
 	// Send POST data and wait for the response
 	// url.Values is of type map[string] []string
-	response, postErr := http.PostForm(address, url.Values{"username": {"idiot"}, "password": {"1234"}})
-	if postErr != nil {
-		panic(postErr.Error())
+	values := url.Values{"username": {"idiot"}, "password": {"1234"}}
+	response, err := http.PostForm(address, values)
+	if err != nil {
+		log.Fatalf("Error during PostForm: %s", err)
 	}
 	defer response.Body.Close()
 
-	body, ioErr := ioutil.ReadAll(response.Body)
-	if ioErr != nil {
-		panic(ioErr.Error())
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		log.Fatalf("Error during ReadAll: %s", err)
 	}
-
-	// ioutil will read the response as a []byte
-	log.Printf("Response:\n%s\n", string(body))
+	log.Printf("%s", body)
 }
