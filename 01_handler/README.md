@@ -1,6 +1,6 @@
-# A simple HTTP server
+# A Simple HTTP Server
 
-A basic HTTP web server can be created in Go by writing a function that accepts two parameters with the types `ResponseWriter` and `Request`, both from the `net/http` package in the standard library.
+A simple HTTP web server can be created in Go by writing a function that accepts two parameters with the types `ResponseWriter` and `Request`, both from the `net/http` package in the standard library.
 
 ```go
 func handler(w http.ResponseWriter, r *http.Request) {
