@@ -21,7 +21,7 @@ The server is then started by calling the package function `ListenAndServe` with
 log.Fatal(http.ListenAndServe(":8080", nil))
 ```
 
-Running this [short program](handler.go) produces no output, but will continue to run without exiting. It is waiting for a request, which we can send using a command like [`curl`](https://curl.se) or by visiting the listening address in a browser.
+Running [this short program](handler.go) produces no output, but will continue to run without exiting. It is waiting for a request, which we can send using a command like [`curl`](https://curl.se) or by visiting the listening address in a browser.
 
 ```console
 user:~$ curl :8080
@@ -31,7 +31,7 @@ Hello, Go!
 This server will continue to run and listen for requests until we tell it to exit.
 
 
-### More Information Than You Require
+## More Information Than You Require
 
 It may only takes a few lines of Go to create a functioning web server, but we've skipped over an incredible amount of detail about how this program actually works.
 
