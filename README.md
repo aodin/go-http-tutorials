@@ -7,6 +7,7 @@ This is not an introduction to the Go programming language. If you're an experie
 
 1. [A simple HTTP server](/01_handler/)
 1. [Requests](/02_request/)
+1. [Response](/03_response/)
 
 
 Happy hacking!

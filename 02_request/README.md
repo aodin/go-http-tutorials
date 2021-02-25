@@ -121,6 +121,10 @@ user:~$ curl -v -d "name=Go" :8080
 > Content-Type: application/x-www-form-urlencoded
 ```
 
-The above command will send a request to our Go server with the body `name=Go`. This body, however, will not be parsed automatically by the server. We must either access a value using the request's `PostFormValue` method or by manually calling either of the `ParseMultipartForm` or `ParseForm` methods. Furthermore, the correct parsing of this body relies on us sending the required method and media type, which `curl` has done for us.
+The above command will send a request to our Go server with the body `name=Go`. This body, however, will not be parsed automatically by the server. We must either access a value using the request's `PostFormValue` method or by manually calling either of the `ParseMultipartForm` or `ParseForm` methods. Note that this parsing is only done when the media type is `application/x-www-form-urlencoded` and a valid method is used, which `curl` has done for us.
 
-As with headers, Go sets a sane default limit on the amount of data in the request body, in this case 10 MB. And just as with query strings, the data will be stored in a `Values` type after being parsed using [`ParseQuery`](https://golang.org/pkg/net/url/#ParseQuery). We'll continue to explore all these methods in further tutorials.
+As with headers, Go sets a sane default limit on the amount of data in the request body, in this case 10 MB. And just as with query strings, the data will be stored in a `Values` type after being parsed using [`ParseQuery`](https://golang.org/pkg/net/url/#ParseQuery).
+
+There are countless other ways to send data to a server via the request body. We'll examine some of the more common encodings in further tutorials.
+
+Next: [Response](/03_response/)
