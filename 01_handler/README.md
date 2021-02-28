@@ -24,7 +24,7 @@ log.Fatal(http.ListenAndServe(":8080", nil))
 Running [this short program](handler.go) produces no output, but will continue to run without exiting. It is waiting for a request, which we can send using a command like [`curl`](https://curl.se) or by visiting the listening address in a browser.
 
 ```console
-user:~$ curl :8080
+user:~$ curl localhost:8080
 Hello, Go!
 ```
 

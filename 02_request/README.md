@@ -10,7 +10,7 @@ There's a number of interesting properties available on the `Request`. Here's a 
 | URL            | .URL                        | /path/item                        |
 | Method         | .Method                     | POST                              |
 | Remote Address | .RemoteAddr                 | [::1]:56310                       |
-| Host           | .Host                       | :8080                             |
+| Host           | .Host                       | localhost:8080                    |
 | User Agent     | .Header.Get("User-Agent")   | curl/7.64.1                       |
 | Content Type   | .Header.Get("Content-Type") | application/x-www-form-urlencoded |
 | Form Data      | .Form                       | map[name:[Go]]                    |
@@ -25,9 +25,9 @@ One way of looking at the `Request` type and its fields is a structured type tha
 Let's examine that process of parsing further with the help of a [more advanced server](request.go). We'll continue using `curl`, but this time in a verbose mode.
 
 ```console
-user:~$ curl -v :8080
+user:~$ curl -v localhost:8080
 > GET / HTTP/1.1
-> Host: :8080
+> Host: localhost:8080
 > User-Agent: curl/7.64.1
 > Accept: */*
 >
@@ -48,9 +48,9 @@ The parsing of the request data starts with an unexported function `parseRequest
 These parsers can error when given poorly constructed data. For example, when we remove the request target from the first line of the header.
 
 ```console
-user:~$ curl -v --request-target "" :8080
+user:~$ curl -v --request-target "" localhost:8080
 > GET  HTTP/1.1
-> Host: :8080
+> Host: localhost:8080
 > User-Agent: curl/7.64.1
 > Accept: */*
 >
@@ -66,9 +66,9 @@ The header lines parsed by `ReadMIMEHeader` will have their names standardized i
 We can see how Go formats header names into the internal map representation using `curl`.
 
 ```console
-user:~$ curl -v -H "Special: A" -H "special: B" :8080
+user:~$ curl -v -H "Special: A" -H "special: B" localhost:8080
 > GET / HTTP/1.1
-> Host: :8080
+> Host: localhost:8080
 > User-Agent: curl/7.64.1
 > Accept: */*
 > Special: A
@@ -93,9 +93,9 @@ It is possible to send too much header data to the Go server. By default, the se
 In addition to headers, we can send information to the server using query strings and the request body. Query strings are parsed from the URL and placed into a [`Values` type](https://golang.org/pkg/net/url/#Values) that shares the same underlying Go builtin as our headers: `map[string][]string`. Although the rules governing query strings are complex, once parsed, there is no canonical format for the keys and are, therefore, case sensitive as the following example shows.
 
 ```console
-user:~$ curl -v ":8080/?name=A&name=B"
+user:~$ curl -v "localhost:8080/?name=A&name=B"
 > GET /?name=A&name=B HTTP/1.1
-> Host: :8080
+> Host: localhost:8080
 > User-Agent: curl/7.64.1
 > Accept: */*
 ```
@@ -112,9 +112,9 @@ Note that the query string is parsed every time `Query()` is called, so these pa
 Data sent via the request body is even more complex, so we'll focus on the common use case of sending form data via `POST`.
 
 ```console
-user:~$ curl -v -d "name=Go" :8080
+user:~$ curl -v -d "name=Go" localhost:8080
 > POST / HTTP/1.1
-> Host: :8080
+> Host: localhost:8080
 > User-Agent: curl/7.64.1
 > Accept: */*
 > Content-Length: 7

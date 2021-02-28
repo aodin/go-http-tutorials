@@ -14,9 +14,9 @@ type ResponseWriter interface {
 But the function signature of a handler has no return type, and there is no requirement to call any of the above methods. We can create an empty handler and Go will return a valid response.
 
 ```console
-user:~$ curl -v :8080/empty
+user:~$ curl -v localhost:8080/empty
 > GET /empty HTTP/1.1
-> Host: :8080
+> Host: localhost:8080
 > User-Agent: curl/7.64.1
 > Accept: */*
 >
@@ -35,9 +35,9 @@ func textHandler(w http.ResponseWriter, r *http.Request) {
 ```
 
 ```console
-user:~$ curl -v :8080/text
+user:~$ curl -v localhost:8080/text
 > GET /text HTTP/1.1
-> Host: :8080
+> Host: localhost:8080
 > User-Agent: curl/7.64.1
 > Accept: */*
 >
