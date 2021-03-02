@@ -33,7 +33,7 @@ user:~$ curl -v localhost:8080
 >
 < HTTP/1.1 200 OK
 < Date: Fri, 05 Feb 2021 01:54:36 GMT
-< Content-Length: 10
+< Content-Length: 18
 < Content-Type: text/plain; charset=utf-8
 <
 What is your name?
@@ -87,6 +87,14 @@ And how the header values vary depending on how we access them.
 | r.Header.Values("special") | [A B] | []string |
 | r.Header["Special"]        | [A B] | []string |
 | r.Header["special"]        | []    | []string |
+
+Along with the `User-Agent` header, `curl` is sending an `Accept` header, which is part of the content negotiation process. [This header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) allows clients to specify which content types are preferred, along with acceptable fallbacks. The value `*/*` indicates any content type and any subtype of that type.
+
+Other clients, such as web browsers, will send different headers. For instance, Firefox sends this value for `Accept`:
+
+    text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+
+We'll examine this header and other headers sent by web browsers, such as `Accept-Encoding` and `Upgrade-Insecure-Requests`, in further tutorials.
 
 It is possible to send too much header data to the Go server. By default, the server will return a `431 Request Header Fields Too Large` error when the headers exceed the server's `MaxHeaderBytes`, which defaults to 1 MB, plus 4 KB of buffer.
 

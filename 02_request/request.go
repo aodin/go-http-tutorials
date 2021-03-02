@@ -13,7 +13,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		name = r.PostFormValue("name")
 	}
-	fmt.Fprintf(w, "Hello, %s!", name)
+
+	if name == "" {
+		fmt.Fprintf(w, "What is your name?")
+	} else {
+		fmt.Fprintf(w, "Hello, %s!", name)
+
+	}
 }
 
 func main() {
