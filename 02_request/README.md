@@ -96,7 +96,7 @@ Other clients, such as web browsers, will send different headers. For instance, 
 
 We'll examine this header and other headers sent by web browsers, such as `Accept-Encoding` and `Upgrade-Insecure-Requests`, in further tutorials.
 
-It is possible to send too much header data to the Go server. By default, the server will return a `431 Request Header Fields Too Large` error when the headers exceed the server's `MaxHeaderBytes`, which defaults to 1 MB, plus 4 KB of buffer.
+It is possible to send too much header data to the Go server. By default, the server will return a `431 Request Header Fields Too Large` error when the headers exceed the server's `MaxHeaderBytes`, which defaults to 1 MB plus 4 KB of buffer.
 
 In addition to headers, we can send information to the server using query strings and the request body. Query strings are parsed from the URL and placed into a [`Values` type](https://golang.org/pkg/net/url/#Values) that shares the same underlying Go builtin as our headers: `map[string][]string`. Although the rules governing query strings are complex, once parsed, there is no canonical format for the keys and are, therefore, case sensitive as the following example shows.
 

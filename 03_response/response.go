@@ -46,6 +46,19 @@ func htmlAsAttachmentHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, html, "Example HTML")
 }
 
+func chunkedHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.Header().Set("Transfer-Encoding", "chunked")
+	w.Header().Set("X-Content-Type-Options", "nosniff")
+	for i := 0; i < 10; i++ {
+		fmt.Fprintf(w, "%d\n", i)
+		if f, ok := w.(http.Flusher); ok {
+			f.Flush()
+		}
+		time.Sleep(100 * time.Millisecond)
+	}
+}
+
 func refreshHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Refresh", "2")
 	fmt.Fprintf(w, time.Now().String())
@@ -87,6 +100,7 @@ func main() {
 	http.HandleFunc("/html", htmlHandler)
 	http.HandleFunc("/html-as-text", htmlAsTextHandler)
 	http.HandleFunc("/html-as-attachment", htmlAsAttachmentHandler)
+	http.HandleFunc("/chunked", chunkedHandler)
 	http.HandleFunc("/refresh", refreshHandler)
 	http.HandleFunc("/error", errorHandler)
 	http.HandleFunc("/redirect", redirectHandler)
